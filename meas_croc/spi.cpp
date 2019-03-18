@@ -11,9 +11,7 @@ spi::~spi()
 {
 }
 
-double spi::write(/*unsigned char addr, unsigned char val*/) {
-	unsigned char addr = '0';
-	unsigned char val = '0';
+double spi::write(double addr, double val) {
 	std::cout << "Writing to " << addr << "value" << val << std::endl;
 
 	return 1;
@@ -27,6 +25,5 @@ double spi::write(std::vector<double> vPar) {
 
 	double addr = vPar[1];
 	double val	= vPar[0];
-	std::cout << "Writing to " << addr << " value " << val << std::endl;
-	return 1;
+	return write(addr, val);
 }
