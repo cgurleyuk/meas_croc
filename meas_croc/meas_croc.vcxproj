@@ -120,14 +120,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="crocodile.cpp" />
     <ClCompile Include="interp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="spi.cpp" />
+    <ClCompile Include="test_crocodile.cpp" />
     <ClCompile Include="token.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="crocodile.h" />
     <ClInclude Include="interp.h" />
     <ClInclude Include="spi.h" />
+    <ClInclude Include="test.h" />
     <ClInclude Include="token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

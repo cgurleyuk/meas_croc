@@ -112,7 +112,7 @@ double main_spi_read(std::vector<double> vPar)
 	return (double)read;
 }
 
-double dump_spim(std::vector<double> vPar)
+double main_spi_dump_fpga(std::vector<double> vPar)
 {
 	if (vPar.size() != 0) {
 		std::cout << "ERR: Invalid number of parameters!" << std::endl;
