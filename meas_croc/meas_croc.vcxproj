@@ -76,10 +76,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\cgurleyuk\lib\LibFT4222-1.3\imports\LibFT4222\inc;D:\cgurleyuk\lib\LibFT4222-1.3\imports\ftd2xx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\lib\LibFT4222-1.3\imports\ftd2xx;..\..\..\lib\LibFT4222-1.3\imports\LibFT4222\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\cgurleyuk\lib\LibFT4222-1.3\imports\LibFT4222\lib\i386;D:\cgurleyuk\lib\LibFT4222-1.3\imports\ftd2xx\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\lib\LibFT4222-1.3\imports\LibFT4222\lib\i386;..\..\..\lib\LibFT4222-1.3\imports\ftd2xx\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ftd2xx.lib;LibFT4222.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

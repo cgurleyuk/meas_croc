@@ -34,6 +34,7 @@ void spi::listDevices(void)
 			devInfo.Description,
 			&devInfo.ftHandle);
 
+		// TODO: remove printing to console here
 		if (FT_OK == ftStatus)
 		{
 			printf("Dev %d:\n", iDev);
@@ -74,7 +75,7 @@ void spi::write(uint8 addr, uint8 val) {
 }
 
 uint8 spi::read(uint8 addr) {
-	uint8 writeBuffer[2] = { ((uint8)addr)|0x80, 0x00 };
+	uint8 writeBuffer[2] = { (static_cast<uint8>(addr))|0x80, 0x00 };
 	uint8 readBuffer[2] = { 0x00, 0x00 };
 	uint16 sizeTransfer;
 
@@ -91,8 +92,8 @@ double main_spi_write(std::vector<double> vPar)
 		return -1;
 	}
 
-	uint8 addr = vPar[1];
-	uint8 val = vPar[0];
+	uint8 addr = static_cast<uint8>(vPar[1]);	
+	uint8 val = static_cast<uint8>(vPar[0]);
 	mainSPI.write(addr, val);
 	return 1.0;
 }
