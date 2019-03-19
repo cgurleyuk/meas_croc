@@ -22,6 +22,7 @@ struct operation operations[] = {	{'+', 2, false},
 interp::interp()
 {
 	bExit = false;
+	register_func("exit", interp::exit);
 }
 
 interp::~interp()
@@ -62,16 +63,16 @@ std::string interp::eval()
 		case T_STR:
 		{
 			std::unordered_map<std::string, double (*)(std::vector<double>)>::const_iterator curFunc = funcMap.find(curTok.getString());
-			if (curFunc == funcMap.end())
-				return "ERR: function not found";
-			
-			curTok.setType(T_FUNC);
-			opStack.push(curTok);
-			break;
+if (curFunc == funcMap.end())
+return "ERR: function not found";
+
+curTok.setType(T_FUNC);
+opStack.push(curTok);
+break;
 		}
 		case T_FAS:
 		{
-			while(opStack.top().getType() != T_LBR) {
+			while (opStack.top().getType() != T_LBR) {
 				outQueue.push(opStack.top());
 				opStack.pop();
 			}
@@ -160,6 +161,11 @@ std::string interp::eval()
 			while (!evalStack.empty()) {
 				p.push_back(evalStack.top().getValue());
 				evalStack.pop();
+			}
+
+			if (strcmp(curTok.getString().c_str(), "exit") == 1) {
+				bExit = true;
+				break;
 			}
 
 			std::unordered_map < std::string, double (*)(std::vector<double>) > ::const_iterator curFunc = funcMap.find(curTok.getString());

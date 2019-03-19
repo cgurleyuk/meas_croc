@@ -22,6 +22,8 @@ private:
 
 	std::unordered_map<std::string, double (*)(std::vector<double>)> funcMap;
 
+	static double exit(std::vector<double> vPar) { return 0; };
+
 	std::string cmd;
 	int pos;
 };
