@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\test">
+      <UniqueIdentifier>{3f1fb399-7b2e-43cf-a2ce-d3285d74e641}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,11 +30,17 @@
     <ClCompile Include="spi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crocodile.cpp">
+    <ClCompile Include="sr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test_crocodile.cpp">
+    <ClCompile Include="daq.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_sr.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="test_daq.cpp">
+      <Filter>Source Files\test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,10 +53,13 @@
     <ClInclude Include="spi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="crocodile.h">
+    <ClInclude Include="test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
+    <ClInclude Include="sr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="daq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

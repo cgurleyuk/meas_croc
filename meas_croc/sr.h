@@ -13,12 +13,12 @@ enum croc_mod
 	croc_mod_wh
 };
 
-class crocodile
+class sr
 {
-	std::vector<uint8> sr;
+	std::vector<uint8> vsr;
 public:
-	crocodile();
-	~crocodile();
+	sr();
+	~sr();
 
 	void clear();
 
@@ -37,5 +37,5 @@ public:
 	void dco_set_fil_cs(uint8 fil_cs);
 	void dco_set_fil_fn(uint8 fil_fn);
 
-	std::vector<uint8> get_sr() { return sr; };
+	std::vector<uint8> get_sr() { return vsr; };
 };

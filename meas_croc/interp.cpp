@@ -22,7 +22,7 @@ struct operation operations[] = {	{'+', 2, false},
 interp::interp()
 {
 	bExit = false;
-	register_func("exit", interp::exit);
+	// register_func("exit", interp::exit);
 }
 
 interp::~interp()
@@ -163,10 +163,10 @@ break;
 				evalStack.pop();
 			}
 
-			if (strcmp(curTok.getString().c_str(), "exit") == 1) {
-				bExit = true;
-				break;
-			}
+			//if (strcmp(curTok.getString().c_str(), "exit") == 1) {
+			//	bExit = true;
+			//	break;
+			//}
 
 			std::unordered_map < std::string, double (*)(std::vector<double>) > ::const_iterator curFunc = funcMap.find(curTok.getString());
 			evalStack.push(token(T_NUM, curFunc->second(p)));

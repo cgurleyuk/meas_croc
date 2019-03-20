@@ -19,7 +19,8 @@ int main(int argc, char* argv[]) {
 	interp.register_func("spi_r", &main_spi_read);
 	interp.register_func("spi_dump_fpga", &main_spi_dump_fpga);
 
-	interp.register_func("test_crocodile", &test_crocodile);
+	interp.register_func("test_sr", &test_sr);
+	interp.register_func("test_daq", &test_daq);
 
 	interp.loop();
 	return 0;
