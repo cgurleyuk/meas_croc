@@ -121,16 +121,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="daq.cpp" />
+    <ClCompile Include="bs_file.cpp" />
     <ClCompile Include="sr.cpp" />
     <ClCompile Include="interp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="spi.cpp" />
+    <ClCompile Include="test_bs_file.cpp" />
     <ClCompile Include="test_daq.cpp" />
     <ClCompile Include="test_sr.cpp" />
     <ClCompile Include="token.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="daq.h" />
+    <ClInclude Include="bs_file.h" />
     <ClInclude Include="sr.h" />
     <ClInclude Include="interp.h" />
     <ClInclude Include="spi.h" />
