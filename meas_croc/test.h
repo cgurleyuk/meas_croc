@@ -7,3 +7,5 @@ double test_daq(std::vector<double> vPar);
 double test_bs_file(std::vector<double> vPar);
 double test_meas(std::vector<double> vPar);
 double test_instr(std::vector<double> vPar);
+
+double test_agilent33622a(std::vector<double> vPar);

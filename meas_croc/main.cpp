@@ -11,7 +11,7 @@
 
 spi mainSPI;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv []) {
 	//spi			mySPI;
 	interp	interp;
 
@@ -24,6 +24,8 @@ int main(int argc, char* argv[]) {
 	interp.register_func("test_bs_file", &test_bs_file);
 	interp.register_func("test_meas", &test_meas);
 	interp.register_func("test_instr", &test_instr);
+
+	interp.register_func("test_instr_wfmgen", &test_agilent33622a);
 
 	interp.loop();
 	return 0;

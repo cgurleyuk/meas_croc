@@ -16,6 +16,12 @@
     <Filter Include="Source Files\test">
       <UniqueIdentifier>{3f1fb399-7b2e-43cf-a2ce-d3285d74e641}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\instr">
+      <UniqueIdentifier>{68ff646e-07fb-4a43-a691-b9de9cd45517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\instr">
+      <UniqueIdentifier>{a2c30884-b509-4587-bf51-8f5798aa33df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,9 +48,6 @@
     <ClCompile Include="test_daq.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
-    <ClCompile Include="bs_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test_bs_file.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
@@ -54,10 +57,19 @@
     <ClCompile Include="test_meas.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
+    <ClCompile Include="test_instr.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
     <ClCompile Include="instr.cpp">
+      <Filter>Source Files\instr</Filter>
+    </ClCompile>
+    <ClCompile Include="agilent33622a.cpp">
+      <Filter>Source Files\instr</Filter>
+    </ClCompile>
+    <ClCompile Include="bs_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test_instr.cpp">
+    <ClCompile Include="test_agilent33622a.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,7 +99,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="instr.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\instr</Filter>
+    </ClInclude>
+    <ClInclude Include="agilent33622a.h">
+      <Filter>Header Files\instr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

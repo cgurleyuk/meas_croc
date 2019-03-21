@@ -55,3 +55,8 @@ std::string instr::read(int nBytes)
 
 	return std::string{ pBuf.get(), nTransferred };
 }
+
+void meas_croc::instr::instr::reset()
+{
+	write("*RST\n");
+}

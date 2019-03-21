@@ -20,12 +20,13 @@ namespace meas_croc {
 
 			std::string read(int nBytes);
 
-		private:
-			ViSession viResourceManagerSession;
-			ViSession viInstrumentSession;
-
+			void reset();
+		protected:
 			std::string instrResourceName;
 			bool bOpen;
+		private:
+			ViSession viResourceManagerSession;
+			ViSession viInstrumentSession;			
 		};
 	}
 }

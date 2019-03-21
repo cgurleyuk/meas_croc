@@ -120,9 +120,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="agilent33622a.cpp" />
     <ClCompile Include="daq.cpp" />
     <ClCompile Include="bs_file.cpp" />
     <ClCompile Include="measurement.cpp" />
+    <ClCompile Include="test_agilent33622a.cpp" />
     <ClCompile Include="test_instr.cpp" />
     <ClCompile Include="test_meas.cpp" />
     <ClCompile Include="sr.cpp" />
@@ -136,6 +138,7 @@
     <ClCompile Include="instr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="agilent33622a.h" />
     <ClInclude Include="daq.h" />
     <ClInclude Include="bs_file.h" />
     <ClInclude Include="measurement.h" />
