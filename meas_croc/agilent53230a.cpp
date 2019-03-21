@@ -39,8 +39,6 @@ double meas_croc::instr::agilent53230a::readMeas()
 {
 	write(":READ?;\n");
 	std::string s = read(32);
-
-	std::cout << "agilent53230a sent: " << s << std::endl;
 	return atof(s.c_str());
 }
 

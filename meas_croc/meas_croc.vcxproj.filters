@@ -72,10 +72,16 @@
     <ClCompile Include="test_agilent33622a.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
-    <ClCompile Include="agilent53230a.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test_agilent53230a.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="agilent53230a.cpp">
+      <Filter>Source Files\instr</Filter>
+    </ClCompile>
+    <ClCompile Include="keithley2002.cpp">
+      <Filter>Source Files\instr</Filter>
+    </ClCompile>
+    <ClCompile Include="test_keithley2002.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -111,7 +117,10 @@
       <Filter>Header Files\instr</Filter>
     </ClInclude>
     <ClInclude Include="agilent53230a.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\instr</Filter>
+    </ClInclude>
+    <ClInclude Include="keithley2002.h">
+      <Filter>Header Files\instr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

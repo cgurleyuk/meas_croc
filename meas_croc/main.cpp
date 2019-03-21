@@ -26,6 +26,7 @@ int main(int argc, char* argv []) {
 
 	interp.register_func("test_instr_wfmgen", &test_agilent33622a);
 	interp.register_func("test_instr_freqcnt", &test_agilent53230a);
+	interp.register_func("test_instr_mm", &test_keithley2002);
 
 	interp.loop();
 	return 0;
