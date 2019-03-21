@@ -14,7 +14,7 @@ namespace meas_croc {
 			~keithley2002();
 
 			void initialize();
-			double read();
+			double measure();
 		};
 	}
 }

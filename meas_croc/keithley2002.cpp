@@ -20,18 +20,30 @@ meas_croc::instr::keithley2002::~keithley2002()
 void meas_croc::instr::keithley2002::initialize()
 {
 	reset();
-	write(":INIT:CONT OFF;\n");
-	write(":ROUT:OPEN:ALL;\n");
-	write(":ROUT:CLOS (@2);\n");
-	//write(":FRES:NPLC 20;\n");
-	write(":FRES:DIG 8.5;\n");
-	write(":FRES:OCOM ON;\n");
+	write(":INIT:CONT OFF;");
+	write(":ROUT:OPEN:ALL;");
+	write(":ROUT:CLOS (@1);");
+	write(":FRES:NPLC 20;");
+	write(":FRES:DIG 8.5;");
+	write(":FRES:OCOM ON;");
 	write(":FUNC 'FRES';");
 }
 
-double meas_croc::instr::keithley2002::read()
+double meas_croc::instr::keithley2002::measure()
 {
-	write(":READ?;\n");
+	write(":INIT;");
+
+	bool measStatus = false;
+	while (!measStatus) {
+		write(":STAT:MEAS?");
+		std::string statusString = read(3);
+		int status = atoi(statusString.c_str());
+
+		if (((status & 0x20) >> 5 == 1))
+			measStatus = true;
+	}
+
+	write(":FETCH?");
 	std::string s = read(32);
 	return atof(s.c_str());
 }
