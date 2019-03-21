@@ -13,8 +13,8 @@ namespace meas_croc {
 		};
 
 		enum agilent33622a_channel {
-			ch1 = 1,
-			ch2 = 2
+			agilent33622a_ch1 = 1,
+			agilent33622a_ch2 = 2
 		};
 
 		enum agilent33622a_impedance {
@@ -29,13 +29,13 @@ namespace meas_croc {
 			agilent33622a(std::string instrResourceName);
 			~agilent33622a();
 
-			void outputEnable(agilent33622a_channel channel = agilent33622a_channel::ch1);
-			void outputDisable(agilent33622a_channel channel = agilent33622a_channel::ch1);
+			void outputEnable(agilent33622a_channel channel = agilent33622a_channel::agilent33622a_ch1);
+			void outputDisable(agilent33622a_channel channel = agilent33622a_channel::agilent33622a_ch1);
 
-			void setImpedance(agilent33622a_impedance impedance, agilent33622a_channel channel = agilent33622a_channel::ch1);
-			void setWaveform(agilent33622a_waveform waveform, agilent33622a_channel channel = agilent33622a_channel::ch1);
-			void setVoltage(double vpp, double voff, agilent33622a_channel channel = agilent33622a_channel::ch1);
-			void setFrequency(double freq, agilent33622a_channel channel = agilent33622a_channel::ch1);
+			void setImpedance(agilent33622a_impedance impedance, agilent33622a_channel channel = agilent33622a_channel::agilent33622a_ch1);
+			void setWaveform(agilent33622a_waveform waveform, agilent33622a_channel channel = agilent33622a_channel::agilent33622a_ch1);
+			void setVoltage(double vpp, double voff, agilent33622a_channel channel = agilent33622a_channel::agilent33622a_ch1);
+			void setFrequency(double freq, agilent33622a_channel channel = agilent33622a_channel::agilent33622a_ch1);
 
 			std::string waveformToString(agilent33622a_waveform waveform);
 			std::string impedanceToString(agilent33622a_impedance impedance);

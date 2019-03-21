@@ -12,7 +12,6 @@
 spi mainSPI;
 
 int main(int argc, char* argv []) {
-	//spi			mySPI;
 	interp	interp;
 
 	interp.register_func("spi_w", &main_spi_write);
@@ -26,6 +25,7 @@ int main(int argc, char* argv []) {
 	interp.register_func("test_instr", &test_instr);
 
 	interp.register_func("test_instr_wfmgen", &test_agilent33622a);
+	interp.register_func("test_instr_freqcnt", &test_agilent53230a);
 
 	interp.loop();
 	return 0;

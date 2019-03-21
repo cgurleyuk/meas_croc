@@ -152,12 +152,12 @@ void sr::mod_set_wh_trim(uint8 wh_trim)
 
 void sr::dco_enable() 
 { 
-	vsr[7] = vsr[7] | 0x02; 
+	vsr[7] = vsr[7] & ~0x02;
 }
 
 void sr::dco_disable() 
 { 
-	vsr[7] = vsr[7] & ~0x02;
+	vsr[7] = vsr[7] | 0x02;
 }
 
 void sr::dco_set_cs(uint8 cs)

@@ -5,7 +5,7 @@
 
 #include "agilent33622a.h"
 
-double test_agilent33622a(std::vector<double> vParam)
+double test_agilent33622a(std::vector<double> vPar)
 {
 	meas_croc::instr::agilent33622a wfmGen("GPIB::10::INSTR");
 	std::cout << "agilent33622a: reset." << std::endl;
