@@ -71,7 +71,7 @@ void spi::write(uint8 addr, uint8 val) {
 	uint8 readBuffer[2] = { 0x00, 0x00 };
 	uint16 sizeTransfer;
 	FT4222_SPIMaster_SingleReadWrite(ftHandle, readBuffer, writeBuffer, 2, &sizeTransfer, false);
-	std::cout << "spi_w, addr -> " << std::hex << static_cast<unsigned>(addr) << ", data -> " << static_cast<unsigned>(val) << std::endl;
+	std::cout << "spi_w, addr -> " << std::hex << static_cast<unsigned>(addr) << ", data -> " << static_cast<unsigned>(val) << std::dec << std::endl;
 }
 
 uint8 spi::read(uint8 addr) {
@@ -80,7 +80,7 @@ uint8 spi::read(uint8 addr) {
 	uint16 sizeTransfer;
 
 	FT4222_SPIMaster_SingleReadWrite(ftHandle, readBuffer, writeBuffer, 2, &sizeTransfer, false);
-	std::cout << "spi_r, addr -> " << std::hex << static_cast<unsigned>(writeBuffer[0]) << ", read -> " << static_cast<unsigned>(readBuffer[1]) << std::endl;
+	std::cout << "spi_r, addr -> " << std::hex << static_cast<unsigned>(writeBuffer[0]) << ", read -> " << static_cast<unsigned>(readBuffer[1]) << std::dec << std::endl;
 
 	return readBuffer[1];
 }

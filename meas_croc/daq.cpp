@@ -35,7 +35,7 @@ std::vector<uint8> daq::read(unsigned int nSamples)
 	int32 nBits = 0;
 
 	DAQmxStartTask(taskHandle);
-	DAQmxReadDigitalLines(taskHandle, nSamples, DAQmx_Val_WaitInfinitely, DAQmx_Val_GroupByChannel, data.get(), nSamples * sizeof(uInt8), &nSamplesRead, &nBits, nullptr);
+	DAQmxReadDigitalLines(taskHandle, nSamples, nSamples/sampleRate*2, DAQmx_Val_GroupByChannel, data.get(), nSamples * sizeof(uInt8), &nSamplesRead, &nBits, nullptr);
 	DAQmxStopTask(taskHandle);
 
 	std::vector<uint8> vData{ data.get(), data.get() + sizeof(uInt8)*nSamples };

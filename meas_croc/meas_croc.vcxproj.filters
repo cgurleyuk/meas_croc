@@ -48,6 +48,12 @@
     <ClCompile Include="test_bs_file.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
+    <ClCompile Include="measurement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_meas.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interp.h">
@@ -69,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bs_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="measurement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

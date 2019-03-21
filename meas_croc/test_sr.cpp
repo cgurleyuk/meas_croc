@@ -9,7 +9,7 @@ double test_sr(std::vector<double> vPar)
 
 	std::cout << "default shift register state: " << std::endl;
 
-	std::vector<uint8> sr_pre = croc.get_sr();
+	std::vector<uint8> sr_pre = croc.get_vsr();
 	std::for_each(sr_pre.begin(), sr_pre.end(), [&](uint8 i) 
 	{
 		std::cout << std::hex << static_cast<unsigned>(i) << " ";
@@ -18,8 +18,8 @@ double test_sr(std::vector<double> vPar)
 
 	std::cout << "modulator enabled register state: " << std::endl;
 
-	croc.mod_enable(croc_mod::croc_mod_pp);
-	std::vector<uint8> sr_post = croc.get_sr();
+	croc.mod_enable(sr_mod::sr_mod_pp);
+	std::vector<uint8> sr_post = croc.get_vsr();
 	std::for_each(sr_post.begin(), sr_post.end(), [&](uint8 i)
 	{
 		std::cout << std::hex << static_cast<unsigned>(i) << " ";

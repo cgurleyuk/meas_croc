@@ -122,6 +122,8 @@
   <ItemGroup>
     <ClCompile Include="daq.cpp" />
     <ClCompile Include="bs_file.cpp" />
+    <ClCompile Include="measurement.cpp" />
+    <ClCompile Include="test_meas.cpp" />
     <ClCompile Include="sr.cpp" />
     <ClCompile Include="interp.cpp" />
     <ClCompile Include="main.cpp" />
@@ -134,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="daq.h" />
     <ClInclude Include="bs_file.h" />
+    <ClInclude Include="measurement.h" />
     <ClInclude Include="sr.h" />
     <ClInclude Include="interp.h" />
     <ClInclude Include="spi.h" />
