@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\lib\DAQmx\include;..\..\..\lib\LibFT4222-1.3\imports\ftd2xx;..\..\..\lib\LibFT4222-1.3\imports\LibFT4222\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\IVI Foundation\VISA\WinNT\include;..\..\..\lib\DAQmx\include;..\..\..\lib\LibFT4222-1.3\imports\ftd2xx;..\..\..\lib\LibFT4222-1.3\imports\LibFT4222\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>..\..\..\lib\LibFT4222-1.3\imports\LibFT4222\lib\i386;..\..\..\lib\DAQmx\lib\msvc;..\..\..\lib\LibFT4222-1.3\imports\ftd2xx\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ftd2xx.lib;LibFT4222.lib;NIDAQmx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\IVI Foundation\VISA\WinNT\lib\msc;..\..\..\lib\LibFT4222-1.3\imports\LibFT4222\lib\i386;..\..\..\lib\DAQmx\lib\msvc;..\..\..\lib\LibFT4222-1.3\imports\ftd2xx\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ftd2xx.lib;LibFT4222.lib;NIDAQmx.lib;visa32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,6 +123,7 @@
     <ClCompile Include="daq.cpp" />
     <ClCompile Include="bs_file.cpp" />
     <ClCompile Include="measurement.cpp" />
+    <ClCompile Include="test_instr.cpp" />
     <ClCompile Include="test_meas.cpp" />
     <ClCompile Include="sr.cpp" />
     <ClCompile Include="interp.cpp" />
@@ -132,6 +133,7 @@
     <ClCompile Include="test_daq.cpp" />
     <ClCompile Include="test_sr.cpp" />
     <ClCompile Include="token.cpp" />
+    <ClCompile Include="instr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="daq.h" />
@@ -142,6 +144,7 @@
     <ClInclude Include="spi.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="token.h" />
+    <ClInclude Include="instr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

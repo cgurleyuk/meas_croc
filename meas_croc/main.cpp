@@ -23,6 +23,7 @@ int main(int argc, char* argv[]) {
 	interp.register_func("test_daq", &test_daq);
 	interp.register_func("test_bs_file", &test_bs_file);
 	interp.register_func("test_meas", &test_meas);
+	interp.register_func("test_instr", &test_instr);
 
 	interp.loop();
 	return 0;
