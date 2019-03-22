@@ -126,6 +126,7 @@
     <ClCompile Include="bs_file.cpp" />
     <ClCompile Include="keithley2002.cpp" />
     <ClCompile Include="measurement.cpp" />
+    <ClCompile Include="meas_fsw.cpp" />
     <ClCompile Include="test_agilent33622a.cpp" />
     <ClCompile Include="test_agilent53230a.cpp" />
     <ClCompile Include="test_instr.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="daq.h" />
     <ClInclude Include="bs_file.h" />
     <ClInclude Include="keithley2002.h" />
+    <ClInclude Include="meas.h" />
     <ClInclude Include="measurement.h" />
     <ClInclude Include="sr.h" />
     <ClInclude Include="interp.h" />

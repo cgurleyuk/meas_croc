@@ -22,6 +22,9 @@
     <Filter Include="Header Files\instr">
       <UniqueIdentifier>{a2c30884-b509-4587-bf51-8f5798aa33df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\measurement">
+      <UniqueIdentifier>{df97f534-1313-4a53-ba44-152b332a4f7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +87,9 @@
     <ClCompile Include="test_keithley2002.cpp">
       <Filter>Source Files\test</Filter>
     </ClCompile>
+    <ClCompile Include="meas_fsw.cpp">
+      <Filter>Source Files\measurement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interp.h">
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="keithley2002.h">
       <Filter>Header Files\instr</Filter>
+    </ClInclude>
+    <ClInclude Include="meas.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@
 double test_meas(std::vector<double> vPar)
 {
 	unsigned int nS = static_cast<unsigned int>(vPar[0]);
-	const std::string filePath = "D:\\cgurleyuk\\data\\mar2019\\test_meas\\";
+	const std::string filePath = "D:\\cgurleyuk\\crocodile\\data\\test_meas\\";
 
 	std::vector<uint8> bs;
 

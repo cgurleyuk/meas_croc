@@ -28,7 +28,7 @@ void measurement::reset_deassert(int nChip)
 
 void measurement::sel_daq_bs(int nChip, daq_bs daq_bs)
 {
-	mainSPI.write(0x00, 0x00 | static_cast<uint8>(daq_bs) << 2 | static_cast<uint8>(nChip) << 2);
+	mainSPI.write(0x00, 0x00 | ((static_cast<uint8>(daq_bs) & 0x03) << 2) | (static_cast<uint8>(nChip) & 0x03) );
 }
 
 void measurement::reset_assert(int nChip)
