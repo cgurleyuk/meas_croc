@@ -18,6 +18,8 @@ public:
 
 	void			write(uint8 addr, uint8 val);
 	uint8			read(uint8 addr);
+
+	bool			debug;
 private:
 	FT_HANDLE ftHandle;
 	FT_STATUS ftStatus;

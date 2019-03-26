@@ -91,16 +91,22 @@ void sr::mod_set_ph_ref_0(sr_mod mod, uint8 ph_ref)
 	switch (mod)
 	{
 	case sr_mod_pp:
+		vsr[1] = vsr[1] & ~0x01;
+		vsr[2] = vsr[2] & ~0xF0;
 		vsr[1] = vsr[1] | (ph_ref_r & 0x10) >> 4;
 		vsr[2] = vsr[2] | (ph_ref_r & 0x0F) << 4;
 		break;
 	case sr_mod_sp:
+		vsr[3] = vsr[3] & ~0x7C;
 		vsr[3] = vsr[3] | ph_ref_r << 2;
 		break;
 	case sr_mod_nd:
+		vsr[4] = vsr[4] & ~0x1F;
 		vsr[4] = vsr[4] | ph_ref_r;
 		break;
 	case sr_mod_hr:
+		vsr[5] = vsr[5] & ~0x07;
+		vsr[6] = vsr[6] & ~0xC0;
 		vsr[5] = vsr[5] | (ph_ref_r & 0x1C) >> 2;
 		vsr[6] = vsr[6] | (ph_ref_r & 0x03) << 6;
 		break;
@@ -116,17 +122,23 @@ void sr::mod_set_ph_ref_1(sr_mod mod, uint8 ph_ref)
 	switch (mod)
 	{
 	case sr_mod_pp:
+		vsr[2] = vsr[2] & ~0x0F;
+		vsr[3] = vsr[3] & ~0x80;
 		vsr[2] = vsr[2] | (ph_ref_r & 0x1E) >> 1;
 		vsr[3] = vsr[3] | (ph_ref_r & 0x01) << 7;
 		break;
 	case sr_mod_sp:
+		vsr[3] = vsr[3] & ~0x03;
+		vsr[4] = vsr[4] & ~0xE0;
 		vsr[3] = vsr[3] | (ph_ref_r & 0x18) >> 3;
 		vsr[4] = vsr[4] | (ph_ref_r & 0x07) << 5;
 		break;
 	case sr_mod_nd:
+		vsr[5] = vsr[5] & ~0xF8;
 		vsr[5] = vsr[5] | ph_ref_r << 3;
 		break;
 	case sr_mod_hr:
+		vsr[5] = vsr[5] & ~0x3E;
 		vsr[6] = vsr[6] | ph_ref_r << 1;
 		break;
 	default:
@@ -152,17 +164,20 @@ void sr::mod_set_wh_trim(uint8 wh_trim)
 
 void sr::dco_enable() 
 { 
-	vsr[7] = vsr[7] & ~0x02;
+	vsr[7] = vsr[7] & ~0x12;
 }
 
 void sr::dco_disable() 
 { 
-	vsr[7] = vsr[7] | 0x02;
+	vsr[7] = vsr[7] | 0x12;
 }
 
 void sr::dco_set_cs(uint8 cs)
 {
 	uint8 cs_r = brev_5b(cs);
+
+	vsr[7] = vsr[7] & ~0x01;
+	vsr[8] = vsr[8] & ~0xF0;
 
 	vsr[7] = vsr[7] | (cs_r & 0x10) >> 4;
 	vsr[8] = vsr[8] | (cs_r & 0x0F) << 4 ;

@@ -15,6 +15,7 @@ meas_croc::instr::keithley2002::keithley2002(std::string instrResourceName)
 
 meas_croc::instr::keithley2002::~keithley2002()
 {
+	close();
 }
 
 void meas_croc::instr::keithley2002::initialize()

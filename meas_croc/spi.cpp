@@ -1,6 +1,7 @@
 #include "spi.h"
 
 #include <iostream>
+#include <iomanip>
 
 spi::spi()
 {
@@ -8,6 +9,8 @@ spi::spi()
 
 	listDevices();
 	initialize();
+
+	debug = false;
 }
 
 
@@ -71,7 +74,9 @@ void spi::write(uint8 addr, uint8 val) {
 	uint8 readBuffer[2] = { 0x00, 0x00 };
 	uint16 sizeTransfer;
 	FT4222_SPIMaster_SingleReadWrite(ftHandle, readBuffer, writeBuffer, 2, &sizeTransfer, false);
-	//std::cout << "spi_w, addr -> " << std::hex << static_cast<unsigned>(addr) << ", data -> " << static_cast<unsigned>(val) << std::dec << std::endl;
+
+	if(debug)
+		std::cout << "spi_w, addr -> " << std::hex << static_cast<unsigned>(addr) << ", data -> " << static_cast<unsigned>(val) << std::dec << std::endl;
 }
 
 uint8 spi::read(uint8 addr) {
@@ -80,7 +85,8 @@ uint8 spi::read(uint8 addr) {
 	uint16 sizeTransfer;
 
 	FT4222_SPIMaster_SingleReadWrite(ftHandle, readBuffer, writeBuffer, 2, &sizeTransfer, false);
-	//std::cout << "spi_r, addr -> " << std::hex << static_cast<unsigned>(writeBuffer[0]) << ", read -> " << static_cast<unsigned>(readBuffer[1]) << std::dec << std::endl;
+	if(debug)
+		std::cout << "spi_r, addr -> " << std::hex << static_cast<unsigned>(writeBuffer[0]) << ", read -> " << static_cast<unsigned>(readBuffer[1]) << std::dec << std::endl;
 
 	return readBuffer[1];
 }
@@ -120,8 +126,10 @@ double main_spi_dump_fpga(std::vector<double> vPar)
 	}
 
 	uint8 addr = 0x00;
-	for (addr = 0x00; addr <= 0x0D; addr = addr + 1) {
-		mainSPI.read(addr);
+	for (addr = 0x00; addr <= 0x0E; addr = addr + 1) {
+		uint8 read = mainSPI.read(addr);
+
+		std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned>(addr) << " " << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned>(read) << std::dec << std::endl;
 	}
 
 	return 0;

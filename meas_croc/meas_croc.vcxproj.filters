@@ -90,6 +90,30 @@
     <ClCompile Include="meas_fsw.cpp">
       <Filter>Source Files\measurement</Filter>
     </ClCompile>
+    <ClCompile Include="tempctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_tempctrl.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="meas_dco.cpp">
+      <Filter>Source Files\measurement</Filter>
+    </ClCompile>
+    <ClCompile Include="vt4200.cpp">
+      <Filter>Source Files\instr</Filter>
+    </ClCompile>
+    <ClCompile Include="test_vt4200.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="test_tempctrl_sw.cpp">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="meas_tsw.cpp">
+      <Filter>Source Files\measurement</Filter>
+    </ClCompile>
+    <ClCompile Include="meas_log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interp.h">
@@ -129,6 +153,18 @@
       <Filter>Header Files\instr</Filter>
     </ClInclude>
     <ClInclude Include="meas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tempctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vt4200.h">
+      <Filter>Header Files\instr</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="meas_log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,6 +23,12 @@ public:
 	void reset_assert(int nChip);
 	void reset_deassert(int nChip);
 
+	void bsd_assert(int nChip);
+	void bsd_deassert(int nChip);
+
+	void clkbuf_enable();
+	void clkbuf_disable();
+
 	void sel_daq_bs(int nChip, daq_bs daq_bs);
 };
 

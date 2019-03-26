@@ -13,3 +13,7 @@ double test_agilent33622a(std::vector<double> vPar);
 // connect channel 1 of 33622a to channel 1 of 53230a
 double test_agilent53230a(std::vector<double> vPar);
 double test_keithley2002(std::vector<double> vPar);
+
+double test_tempctrl_sw(std::vector<double> vPar);
+double test_tempctrl(std::vector<double> vPar);
+double test_vt4200(std::vector<double> vPar);

@@ -29,7 +29,13 @@ int main(int argc, char* argv []) {
 	interp.register_func("test_instr_freqcnt", &test_agilent53230a);
 	interp.register_func("test_instr_mm", &test_keithley2002);
 
+	interp.register_func("test_tempctrl", &test_tempctrl);
+	interp.register_func("test_tempctrl_sw", &test_tempctrl_sw);
+	interp.register_func("test_oven", &test_vt4200);
+
 	interp.register_func("meas_fsw", &meas_fsw);
+	interp.register_func("meas_dco", &meas_dco);
+	interp.register_func("meas_tsw", &meas_tsw);
 
 	interp.loop();
 	return 0;

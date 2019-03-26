@@ -17,6 +17,7 @@ public:
 
 	void open(const std::string fileName);
 	void write_bs(const std::vector<uint8> &bs);
+	void write_bs(const std::vector<uint8> &bs, const double T_begin, const double T_end);
 	void close();
 private:
 	std::ofstream fStream;
