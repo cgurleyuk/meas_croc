@@ -37,6 +37,14 @@ enum sr_sel_bsc
 	sr_sel_bsc_hr
 };
 
+enum sr_dco_clkdiv
+{
+	sr_dco_clkdiv_1,
+	sr_dco_clkdiv_2,
+	sr_dco_clkdiv_4,
+	sr_dco_clkdiv_8
+};
+
 class sr
 {
 	std::vector<uint8> vsr;
@@ -64,6 +72,7 @@ public:
 	void dco_set_cs(uint8 cs);
 	void dco_set_fil_cs(uint8 fil_cs);
 	void dco_set_fil_fn(uint8 fil_fn);
+	void dco_set_clkdiv(sr_dco_clkdiv dco_clkdiv);
 
 	std::vector<uint8> get_vsr() { return vsr; };
 };

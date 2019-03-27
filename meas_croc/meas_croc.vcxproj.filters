@@ -114,6 +114,9 @@
     <ClCompile Include="meas_log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="meas_whb_trim.cpp">
+      <Filter>Source Files\measurement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interp.h">

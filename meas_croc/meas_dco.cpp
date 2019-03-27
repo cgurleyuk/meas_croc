@@ -37,6 +37,7 @@ double meas_dco(std::vector<double> vPar)
 			sr.clear();
 			sr.dco_enable();
 			sr.dco_set_cs(static_cast<uint8>(nD));
+			sr.dco_set_clkdiv(sr_dco_clkdiv::sr_dco_clkdiv_8);
 
 			meas.program_sr(nChip, sr);
 

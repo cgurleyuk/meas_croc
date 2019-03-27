@@ -131,6 +131,7 @@
     <ClCompile Include="meas_fsw.cpp" />
     <ClCompile Include="meas_log.cpp" />
     <ClCompile Include="meas_tsw.cpp" />
+    <ClCompile Include="meas_whb_trim.cpp" />
     <ClCompile Include="test_tempctrl_sw.cpp" />
     <ClCompile Include="vt4200.cpp" />
     <ClCompile Include="test_vt4200.cpp" />

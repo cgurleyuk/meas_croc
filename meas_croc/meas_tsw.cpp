@@ -27,6 +27,7 @@ double meas_tsw(std::vector<double> vPar)
 
 	bool has_meas_log = true;
 	bool is_fake_run = false;
+	bool meas_freq = false;
 
 	unsigned int n_s = pow(2, 21);
 
@@ -49,9 +50,20 @@ double meas_tsw(std::vector<double> vPar)
 
 	// frequency sweep file
 	std::ofstream f_freq;
-	f_freq.open(file_path + "\\meas_freq.bin", std::ios::out | std::ios::binary);
+	if (meas_freq) {
+		f_freq.open(file_path + "\\meas_freq.bin", std::ios::out | std::ios::binary);
+	}
 
-	std::vector<double> v_T = linspace(-65.0, 135.0, 21);
+
+	std::vector<double> v_T;
+	if (is_fake_run)
+	{
+		v_T.push_back(25.0);
+	}
+	else {
+		std::vector<double> v_T = linspace(-65.0, 135.0, 21);
+	}
+
 
 	tempctrl.set_debug();
 	tempctrl.dT_tgt = 3e-3;
@@ -73,9 +85,11 @@ double meas_tsw(std::vector<double> vPar)
 	agilent33622a.setImpedance(meas_croc::instr::agilent33622a_impedance::hiz);
 
 	// setup frequency counter
-	agilent53230a.reset();
-	agilent53230a.configureMeas(meas_croc::instr::agilent53230a_meas::frequency);
-	agilent53230a.setGateTime(1.0);
+	if (meas_freq) {
+		agilent53230a.reset();
+		agilent53230a.configureMeas(meas_croc::instr::agilent53230a_meas::frequency);
+		agilent53230a.setGateTime(1.0);
+	}
 
 	meas_log.write("MEAS: meas_tsw");
 	for (unsigned int n_T = 0; n_T < v_T.size(); n_T++)
@@ -111,6 +125,8 @@ double meas_tsw(std::vector<double> vPar)
 				case 0:
 					sr.clear();
 					sr.mod_enable(sr_mod::sr_mod_pp);
+					sr.mod_set_ph_ref_0(sr_mod::sr_mod_pp, 0x0e);
+					sr.mod_set_ph_ref_1(sr_mod::sr_mod_pp, 0x12);
 					meas.program_sr(n_chip, sr);
 					meas.sel_daq_bs(n_chip, daq_bs::daq_bsa);
 					break;
@@ -125,8 +141,8 @@ double meas_tsw(std::vector<double> vPar)
 					sr.clear();
 					sr.mod_enable(sr_mod::sr_mod_nd);
 					sr.sel_bsa(sr_sel_bsa::sr_sel_bsa_nd);
-					sr.mod_set_ph_ref_1(sr_mod::sr_mod_nd, 0x17);
 					sr.mod_set_ph_ref_0(sr_mod::sr_mod_nd, 0x0F);
+					sr.mod_set_ph_ref_1(sr_mod::sr_mod_nd, 0x17);
 					meas.program_sr(n_chip, sr);
 					meas.sel_daq_bs(n_chip, daq_bs::daq_bsa);
 					break;
@@ -134,6 +150,8 @@ double meas_tsw(std::vector<double> vPar)
 					sr.clear();
 					sr.mod_enable(sr_mod::sr_mod_hr);
 					sr.sel_bsa(sr_sel_bsa::sr_sel_bsa_hr);
+					sr.mod_set_ph_ref_0(sr_mod::sr_mod_pp, 0x0e);
+					sr.mod_set_ph_ref_1(sr_mod::sr_mod_pp, 0x12);
 					meas.program_sr(n_chip, sr);
 					meas.sel_daq_bs(n_chip, daq_bs::daq_bsa);
 					break;
@@ -141,6 +159,7 @@ double meas_tsw(std::vector<double> vPar)
 					sr.clear();
 					sr.mod_enable(sr_mod::sr_mod_wh);
 					sr.sel_bsc(sr_sel_bsc::sr_sel_bsc_wh);
+					sr.mod_set_wh_trim(8);
 					meas.program_sr(n_chip, sr);
 					meas.sel_daq_bs(n_chip, daq_bs::daq_bsc);
 					break;
@@ -175,42 +194,47 @@ double meas_tsw(std::vector<double> vPar)
 			}
 			agilent33622a.outputDisable();
 			
-			meas.clkbuf_enable();
-
-			for (int n_d = 0; n_d < 32; n_d++)
-			{
-				sr.clear();
-				sr.dco_enable();
-				sr.dco_set_cs(static_cast<uint8>(n_d));
-				meas.program_sr(n_chip, sr);
-
-				for (int n_b : {0, 1})
+			if (meas_freq) {
+				meas.clkbuf_enable();
+				for (int n_d = 0; n_d < 32; n_d++)
 				{
-					if (n_b == 1)
-						meas.bsd_assert(n_chip);
-					else
-						meas.bsd_deassert(n_chip);
+					sr.clear();
+					sr.dco_enable();
+					sr.dco_set_cs(static_cast<uint8>(n_d));
+					sr.dco_set_clkdiv(sr_dco_clkdiv::sr_dco_clkdiv_8);
+					meas.program_sr(n_chip, sr);
 
-					double f = agilent53230a.readMeas();
+					for (int n_b : {0, 1})
+					{
+						if (n_b == 1)
+							meas.bsd_assert(n_chip);
+						else
+							meas.bsd_deassert(n_chip);
 
-					std::stringstream ss_dco;
-					ss_dco << "n_d = " << std::hex << std::setw(2) << std::setfill('0') << n_d << std::dec << ", bsd = " << n_b << ", f = " << f;
-					meas_log.write(ss_dco.str());
+						double f = agilent53230a.readMeas();
 
-					f_freq.write(reinterpret_cast<const char*>(&f), sizeof(f));
-					f_freq.flush();
+						std::stringstream ss_dco;
+						ss_dco << "n_d = " << std::hex << std::setw(2) << std::setfill('0') << n_d << std::dec << ", bsd = " << n_b << ", f = " << f;
+						meas_log.write(ss_dco.str());
+
+						f_freq.write(reinterpret_cast<const char*>(&f), sizeof(f));
+						f_freq.flush();
+					}
+
+					sr.clear();
+					meas.program_sr(n_chip, sr);
 				}
-
-				sr.clear();
-				meas.program_sr(n_chip, sr);
+				meas.clkbuf_disable();
 			}
-
-			meas.clkbuf_disable();
 			
 		}
 	}
 
-	f_freq.close();
+	if (meas_freq) {
+		f_freq.close();
+	}
+	if(!is_fake_run)
+		tempctrl.stabilize(25.0);
 
 	return 0;
 }

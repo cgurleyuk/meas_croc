@@ -36,6 +36,7 @@ int main(int argc, char* argv []) {
 	interp.register_func("meas_fsw", &meas_fsw);
 	interp.register_func("meas_dco", &meas_dco);
 	interp.register_func("meas_tsw", &meas_tsw);
+	interp.register_func("meas_whb_trim", &meas_whb_trim);
 
 	interp.loop();
 	return 0;

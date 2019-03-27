@@ -158,6 +158,9 @@ void sr::mod_set_wh_trim(uint8 wh_trim)
 {
 	uint8 wh_trim_r = brev_4b(wh_trim);
 
+	vsr[6] = vsr[6] & ~0x01;
+	vsr[7] = vsr[7] & ~0xE0;
+
 	vsr[6] = vsr[6] | (wh_trim_r & 0x08) >> 3;
 	vsr[7] = vsr[7] | (wh_trim_r & 0x07) << 5;
 }
@@ -198,6 +201,30 @@ void sr::dco_set_fil_fn(uint8 fil_fn)
 	uint8 fil_fn_r = brev_5b(fil_fn);
 
 	vsr[10] = vsr[10] | fil_fn_r;
+}
+
+void sr::dco_set_clkdiv(sr_dco_clkdiv dco_clkdiv)
+{
+	switch (dco_clkdiv)
+	{
+	case sr_dco_clkdiv_1:
+		vsr[7] = vsr[7] & ~0x0C;
+		break;
+	case sr_dco_clkdiv_2:
+		vsr[7] = vsr[7] & ~0x0C;
+		vsr[7] = vsr[7] | 0x08;
+		break;
+	case sr_dco_clkdiv_4:
+		vsr[7] = vsr[7] & ~0x0C;
+		vsr[7] = vsr[7] | 0x04;
+		break;
+	case sr_dco_clkdiv_8:
+		vsr[7] = vsr[7] & ~0x0C;
+		vsr[7] = vsr[7] | 0x0C;
+		break;
+	default:
+		break;
+	}
 }
 
 void sr::sel_bsa(sr_sel_bsa sel_bsa)
