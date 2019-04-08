@@ -27,7 +27,7 @@ double meas_tsw(std::vector<double> vPar)
 
 	bool has_meas_log = true;
 	bool is_fake_run = false;
-	bool meas_freq = false;
+	bool meas_freq = true;
 
 	unsigned int n_s = pow(2, 21);
 
@@ -55,13 +55,11 @@ double meas_tsw(std::vector<double> vPar)
 	}
 
 
-	std::vector<double> v_T;
+	std::vector<double> v_T = linspace(-65.0, 125.0, 20);
 	if (is_fake_run)
 	{
+		v_T.clear();
 		v_T.push_back(25.0);
-	}
-	else {
-		std::vector<double> v_T = linspace(-65.0, 135.0, 21);
 	}
 
 
@@ -112,6 +110,7 @@ double meas_tsw(std::vector<double> vPar)
 		
 		
 		for (int n_chip : {0, 1, 2, 3}) {
+		//for (int n_chip : {2, 3}) {
 			std::stringstream ss;
 			ss << "select chip " << n_chip;
 			meas_log.write(ss.str());
@@ -119,6 +118,7 @@ double meas_tsw(std::vector<double> vPar)
 			agilent33622a.outputEnable();
 
 			for (int n_mod : {0, 1, 2, 3, 4})
+			//for (int n_mod : {4})
 			{
 				switch (n_mod)
 				{
@@ -201,7 +201,7 @@ double meas_tsw(std::vector<double> vPar)
 					sr.clear();
 					sr.dco_enable();
 					sr.dco_set_cs(static_cast<uint8>(n_d));
-					sr.dco_set_clkdiv(sr_dco_clkdiv::sr_dco_clkdiv_8);
+					//sr.dco_set_clkdiv(sr_dco_clkdiv::sr_dco_clkdiv_8);
 					meas.program_sr(n_chip, sr);
 
 					for (int n_b : {0, 1})
