@@ -1,11 +1,21 @@
 #include "measurement.h"
 
+#include <thread>
+#include <chrono>
+
 measurement::measurement()
 {
 }
 
 measurement::~measurement()
 {
+}
+
+void measurement::fpga_verify_and_reset()
+{
+	while ((mainSPI.read(0x7e) != 0xDE) || (mainSPI.read(0x7F) != 0xAD)) {
+		mainSPI.reset();
+	}
 }
 
 void measurement::program_sr(int nChip, sr sr)

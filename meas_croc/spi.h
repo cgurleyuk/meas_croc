@@ -19,9 +19,13 @@ public:
 	void			write(uint8 addr, uint8 val);
 	uint8			read(uint8 addr);
 
+	void			gpio_write(GPIO_Port port, bool val);
+
 	bool			debug;
+
+	void			reset();
 private:
-	FT_HANDLE ftHandle;
+	FT_HANDLE ftHandle, ftHandleGPIO;
 	FT_STATUS ftStatus;
 
 	std::vector<FT_DEVICE_LIST_INFO_NODE> ftDevList;

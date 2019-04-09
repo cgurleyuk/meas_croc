@@ -19,6 +19,8 @@ public:
 	measurement();
 	~measurement();
 
+	void fpga_verify_and_reset();
+
 	void program_sr(int nChip, sr i_sr);
 	void reset_assert(int nChip);
 	void reset_deassert(int nChip);

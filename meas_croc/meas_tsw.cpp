@@ -107,6 +107,11 @@ double meas_tsw(std::vector<double> vPar)
 			ss << "TEMPCTRL: stabilized to " << T_tgt;
 			meas_log.write(ss.str());
 		}
+
+		while ((mainSPI.read(0x7e) != 0xDE) || (mainSPI.read(0x7F) != 0xAD)) {
+			meas_log.write("ERROR: Cannot access the FPGA, trying to restart.\n");
+			mainSPI.reset();
+		}
 		
 		
 		for (int n_chip : {0, 1, 2, 3}) {

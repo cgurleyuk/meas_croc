@@ -130,6 +130,7 @@
     <ClCompile Include="meas_dco.cpp" />
     <ClCompile Include="meas_fsw.cpp" />
     <ClCompile Include="meas_log.cpp" />
+    <ClCompile Include="meas_reset_fpga.cpp" />
     <ClCompile Include="meas_tsw.cpp" />
     <ClCompile Include="meas_whb_trim.cpp" />
     <ClCompile Include="test_tempctrl_sw.cpp" />

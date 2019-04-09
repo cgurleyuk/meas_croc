@@ -3,6 +3,9 @@
 #include <iostream>
 #include <iomanip>
 
+#include <chrono>
+#include <thread>
+
 spi::spi()
 {
 	ftHandle = NULL;
@@ -65,8 +68,44 @@ std::string spi::devFlagToString(DWORD flags)
 
 void spi::initialize()
 {
-	ftStatus = FT_OpenEx((PVOID)ftDevList[0].LocId, FT_OPEN_BY_LOCATION, &ftHandle);
-	ftStatus = FT4222_SPIMaster_Init(ftHandle, SPI_IO_SINGLE, CLK_DIV_128, CLK_IDLE_LOW, CLK_LEADING, 0x01);
+	FT_STATUS	ft_status;
+	FT4222_STATUS ft4222_status;
+	//ft4222_status = FT_OpenEx((PVOID)ftDevList[0].LocId, FT_OPEN_BY_LOCATION, &ftHandle);
+	ft_status = FT_OpenEx((PVOID)"FT4222 A", FT_OPEN_BY_DESCRIPTION, &ftHandle);
+	ft_status = FT_OpenEx((PVOID)"FT4222 D", FT_OPEN_BY_DESCRIPTION, &ftHandleGPIO);
+	ft4222_status = FT4222_SPIMaster_Init(ftHandle, SPI_IO_SINGLE, CLK_DIV_512, CLK_IDLE_LOW, CLK_LEADING, 0x01);
+
+
+	//FT4222_GPIO_Write(ftHandle, GPIO_PORT1, GPIO_OUTPUT_HIGH);
+	//FT4222_GPIO_Write(ftHandle, GPIO_PORT2, GPIO_OUTPUT_HIGH);
+	//FT4222_GPIO_Write(ftHandle, GPIO_PORT3, GPIO_OUTPUT_HIGH);*/
+}
+
+void spi::reset()
+{
+	FT4222_UnInitialize(ftHandle);
+	FT_Close(ftHandle);
+
+	FT4222_STATUS ft4222_status;
+
+	GPIO_Dir gpioDir[4];
+	gpioDir[0] = GPIO_OUTPUT;
+	gpioDir[1] = GPIO_OUTPUT;
+	gpioDir[2] = GPIO_OUTPUT;
+	gpioDir[3] = GPIO_OUTPUT;
+
+	ft4222_status = FT4222_GPIO_Init(ftHandleGPIO, gpioDir);
+	ft4222_status = FT4222_SetSuspendOut(ftHandleGPIO, false);
+	ft4222_status = FT4222_SetWakeUpInterrupt(ftHandleGPIO, false);
+
+	ft4222_status = FT4222_GPIO_Write(ftHandleGPIO, GPIO_PORT3, 0);
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	ft4222_status = FT4222_GPIO_Write(ftHandleGPIO, GPIO_PORT3, 1);
+
+	FT4222_UnInitialize(ftHandleGPIO);
+	FT_Close(ftHandleGPIO);
+
+	initialize();
 }
 
 void spi::write(uint8 addr, uint8 val) {
@@ -89,6 +128,11 @@ uint8 spi::read(uint8 addr) {
 		std::cout << "spi_r, addr -> " << std::hex << static_cast<unsigned>(writeBuffer[0]) << ", read -> " << static_cast<unsigned>(readBuffer[1]) << std::dec << std::endl;
 
 	return readBuffer[1];
+}
+
+void spi::gpio_write(GPIO_Port port, bool val)
+{
+	FT4222_GPIO_Write(ftHandle, port, val);
 }
 
 double main_spi_write(std::vector<double> vPar)

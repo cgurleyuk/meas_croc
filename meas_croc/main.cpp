@@ -17,7 +17,7 @@ int main(int argc, char* argv []) {
 
 	interp.register_func("spi_w", &main_spi_write);
 	interp.register_func("spi_r", &main_spi_read);
-	interp.register_func("spi_dump_fpga", &main_spi_dump_fpga);
+	interp.register_func("spi_dump", &main_spi_dump_fpga);
 
 	interp.register_func("test_sr", &test_sr);
 	interp.register_func("test_daq", &test_daq);
@@ -37,6 +37,8 @@ int main(int argc, char* argv []) {
 	interp.register_func("meas_dco", &meas_dco);
 	interp.register_func("meas_tsw", &meas_tsw);
 	interp.register_func("meas_whb_trim", &meas_whb_trim);
+
+	interp.register_func("meas_reset_fpga", &meas_reset_fpga);
 
 	interp.loop();
 	return 0;
